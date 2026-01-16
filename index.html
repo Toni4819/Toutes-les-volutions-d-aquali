@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Évolutions d’Aquali - Accueil</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; background: #e0f7fa; }
+    button { padding: 10px 20px; margin: 20px; font-size: 16px; cursor: pointer; }
+    #result { font-size: 20px; margin-top: 20px; color: #0077b6; }
+    a { display: block; margin-top: 30px; color: #d62828; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <h1>Pokédex Parodique : Évolutions d’Aquali</h1>
+  <p>Découvre une évolution absurde au hasard :</p>
+  <button onclick="getRandomEvolution()">🎲 Tirer une évolution</button>
+  <div id="result"></div>
+  <a href="liste.html">Voir la liste complète</a>
+
+  <script>
+    async function getRandomEvolution() {
+      const response = await fetch("data.json");
+      const data = await response.json();
+      const evolutions = data.evolutions;
+      const random = evolutions[Math.floor(Math.random() * evolutions.length)];
+      document.getElementById("result").innerText = 
+        "En quoi veux-tu que Aquali évolue ? En " + random;
+    }
+  </script>
+</body>
+</html>
