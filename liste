@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Liste des Évolutions d’Aquali</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #fff3e0; text-align: center; }
+    ul { list-style: none; padding: 0; }
+    li { margin: 10px; font-size: 18px; color: #6a040f; }
+    a { display: block; margin-top: 30px; color: #0077b6; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <h1>Liste Complète des Évolutions d’Aquali</h1>
+  <ul id="list"></ul>
+  <a href="index.html">⬅ Retour à l’accueil</a>
+
+  <script>
+    async function loadList() {
+      const response = await fetch("data.json");
+      const data = await response.json();
+      const evolutions = data.evolutions;
+      const listElement = document.getElementById("list");
+      evolutions.forEach(evo => {
+        const li = document.createElement("li");
+        li.textContent = "En quoi veux-tu que Aquali évolue ? En " + evo;
+        listElement.appendChild(li);
+      });
+    }
+    loadList();
+  </script>
+</body>
+</html>
